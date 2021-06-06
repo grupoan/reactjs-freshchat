@@ -7,6 +7,8 @@ declare const window: any;
 export interface FreshchatStyles {
   backgroundColor: string;
   color: string;
+  right: string;
+  bottom: string;
 }
 
 export interface  FreshChatProps {
@@ -18,17 +20,17 @@ export interface  FreshChatProps {
   ic_styles?: FreshchatStyles;
 }
 
-export const Freshchat: React.FC<FreshChatProps> =  ({ 
-  token, 
-  externalId, 
-  firstName, 
+export const Freshchat: React.FC<FreshChatProps> =  ({
+  token,
+  externalId,
+  firstName,
   lastName,
   label,
   ic_styles
 }) => {
   const [isWidgetOpen, setIsWidgetOpen] = React.useState(false);
   const UrlIcon = 'https://firebasestorage.googleapis.com/v0/b/repfinder-450e2.appspot.com/o/chat.svg?alt=media&token=885c5d28-2165-4a24-a96c-c1b0c98fab3f'
-  
+
   //Inject FreshChat script in the html
   //oficial doc: https://developers.freshchat.com/web-sdk/#intro
   const loadScript = () => {
@@ -56,7 +58,7 @@ export const Freshchat: React.FC<FreshChatProps> =  ({
           }
         },
       })
-    
+
   }
 
   const toggleWidget = () => {
@@ -94,24 +96,24 @@ export const Freshchat: React.FC<FreshChatProps> =  ({
   return (
     label ? (
       !isWidgetOpen ? <div className={styles.buttonContainer} onClick={() => toggleWidget()}>
-        <div 
+        <div
           className={styles.buttonContent}
           style={{
             backgroundColor: ic_styles ? ic_styles.backgroundColor : '#002d85',
             color: ic_styles ? ic_styles.color : '#ffffff',
-            borderColor: ic_styles ? 
+            borderColor: ic_styles ?
               `transparent ${ic_styles.backgroundColor} transparent transparent` :
               `transparent #002d85 transparent transparent`
-          }} 
-          
+          }}
+
           >
           <label>{label}</label>
-          <img 
-            src={UrlIcon} 
+          <img
+            src={UrlIcon}
             alt="chat icon"
             />
         </div>
       </div> : null
-   ) : null) 
-  
+   ) : null)
+
 }
